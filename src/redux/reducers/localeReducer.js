@@ -1,4 +1,4 @@
-import { LOCALE_ACTION } from "../../constants/actionTypes";
+import { LOCALE_ACTION_TYPE } from "../../constants/actionTypes";
 import initialState from "./initialState";
 import objectAssign from "object-assign";
 
@@ -10,7 +10,7 @@ import objectAssign from "object-assign";
 
 export default function localeReducer(state = initialState.locale, action) {
   switch (action.type) {
-    case LOCALE_ACTION.CHANGE_LOCATE_SUCCESS:
+    case LOCALE_ACTION_TYPE.CHANGE_LOCATE_SUCCESS:
       return objectAssign({}, state, { locale: action.value });
     default:
       return state;

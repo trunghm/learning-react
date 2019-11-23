@@ -1,4 +1,4 @@
-import { APP_ACTION } from "../../constants/actionTypes";
+import { APP_ACTION_TYPE } from "../../constants/actionTypes";
 import {
   showLoading as showLoadingBar,
   hideLoading as hideLoadingBar
@@ -8,7 +8,7 @@ export function showLoading() {
   return dispatch => {
     dispatch(showLoadingBar());
     dispatch({
-      type: APP_ACTION.SHOW_LOADING
+      type: APP_ACTION_TYPE.SHOW_LOADING
     });
   };
 }
@@ -16,7 +16,7 @@ export function showLoading() {
 export function hideLoading() {
   return dispatch => {
     dispatch({
-      type: APP_ACTION.HIDE_LOADING
+      type: APP_ACTION_TYPE.HIDE_LOADING
     });
     dispatch(hideLoadingBar());
   };
@@ -25,7 +25,7 @@ export function hideLoading() {
 export function setHeaderText(text) {
   return dispatch => {
     dispatch({
-      type: APP_ACTION.SET_HEADER_TEXT,
+      type: APP_ACTION_TYPE.SET_HEADER_TEXT,
       headerText: text
     });
   };

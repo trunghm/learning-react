@@ -1,4 +1,4 @@
-import { MEMBER_ACTION } from "../../constants/actionTypes";
+import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
 import { necessaryDataIsProvidedToSubmitLogin } from "../../utils/loginSubmit";
 import objectAssign from "object-assign";
 import initialState from "./initialState";
@@ -13,10 +13,10 @@ export default function loginReducer(state = initialState.loginUser, action) {
   let newState;
 
   switch (action.type) {
-    case MEMBER_ACTION.LOGIN_SUCCESS:
+    case MEMBER_ACTION_TYPE.LOGIN_SUCCESS:
       return objectAssign({}, state, { isLoggedIn: true });
 
-    case MEMBER_ACTION.LOGIN_FIELD_CHANGE_SUCCESS:
+    case MEMBER_ACTION_TYPE.LOGIN_FIELD_CHANGE_SUCCESS:
       newState = objectAssign({}, state);
       newState[action.fieldName] = action.value;
       newState.necessaryDataIsProvidedToSubmitLogin = necessaryDataIsProvidedToSubmitLogin(

@@ -1,9 +1,9 @@
-import { MEMBER_ACTION } from "../../constants/actionTypes";
+import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
 
 export function login(loginUser) {
   return function(dispatch) {
     return dispatch({
-      type: MEMBER_ACTION.LOGIN_SUCCESS,
+      type: MEMBER_ACTION_TYPE.LOGIN_SUCCESS,
       loginUser
     });
   };
