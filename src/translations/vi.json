@@ -8,5 +8,13 @@
   "home.get_code_at": "Lay code tu",
   "home.reactjs_template": "ReactJS Template",
   "home.review_the": "Xem demo tai ",
-  "home.demo_app": "Chay thu"
+  "home.demo_app": "Chay thu",
+  "notfound.header": "404 Page Not Found",
+  "notfound.go_back_to_home": "Go back to homepage",
+  "login.email_placeholder_text": "Enter an email",
+  "login.username_placeholder_text": "Enter a username",
+  "login.password_placeholder_text": "Enter a password",
+  "login.email_label": "Email",
+  "login.username_label": "Username",
+  "login.password_label": "Password"
 }

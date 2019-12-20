@@ -1,16 +1,13 @@
-/* eslint-disable import/no-named-as-default */
 import { Route, Switch } from "react-router-dom";
 import React from "react";
-import AboutView from "./About/AboutView";
-import HomeView from "./Home/HomeView";
-import LoginPage from "../containers/LoginPage";
-import NotFoundView from "./NotFound/NotFoundView";
-import Header from "../components/Header/Header";
+import { AboutView, HomeView, NotFoundView, DashboardView } from "../views";
+import { LoginPage } from "../containers";
+import { Header } from "../components/common";
 import { IntlProvider } from "react-intl";
-import messages_en from "../translations/en";
-import messages_vi from "../translations/vi";
+import { messages_en, messages_vi } from "../translations";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { pathKeys } from "../constants";
 
 const messages = {
   en: messages_en,
@@ -37,8 +34,9 @@ class App extends React.PureComponent {
           <Header/>
           <Switch>
             <Route exact path="/" component={HomeView}/>
-            <Route path="/about" component={AboutView}/>
-            <Route path="/login" component={LoginPage}/>
+            <Route path={pathKeys.ABOUT} component={AboutView}/>
+            <Route path={pathKeys.LOGIN} component={LoginPage}/>
+            <Route path={pathKeys.DASHBOARD} component={DashboardView}/>
             <Route component={NotFoundView}/>
           </Switch>
         </div>
@@ -47,20 +45,21 @@ class App extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    locale: state.localeReducer.locale
+    locale: state.localeReducer.locale,
+    loading: state.loadingReducer.loading
   };
 };
 
 App.propTypes = {
-  locale: PropTypes.string
+  locale: PropTypes.string,
+  loading: PropTypes.bool
 };
 
 App.defaultProps = {
-  locale: ""
+  locale: "",
+  loading: false
 };
 
-export default connect(
-  mapStateToProps
-)(App);
+export default connect(mapStateToProps)(App);

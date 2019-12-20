@@ -1,12 +1,8 @@
 import { APP_ACTION_TYPE } from "../../constants/actionTypes";
-import {
-  showLoading as showLoadingBar,
-  hideLoading as hideLoadingBar
-} from "react-redux-loading-bar";
 
 export function showLoading() {
+  console.log("show Loading");
   return dispatch => {
-    dispatch(showLoadingBar());
     dispatch({
       type: APP_ACTION_TYPE.SHOW_LOADING
     });
@@ -18,7 +14,6 @@ export function hideLoading() {
     dispatch({
       type: APP_ACTION_TYPE.HIDE_LOADING
     });
-    dispatch(hideLoadingBar());
   };
 }
 

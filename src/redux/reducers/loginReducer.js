@@ -1,5 +1,5 @@
 import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
-import { necessaryDataIsProvidedToSubmitLogin } from "../../utils/loginSubmit";
+import { loginSubmit } from "../../utils";
 import objectAssign from "object-assign";
 import initialState from "./initialState";
 
@@ -19,7 +19,7 @@ export default function loginReducer(state = initialState.loginUser, action) {
     case MEMBER_ACTION_TYPE.LOGIN_FIELD_CHANGE_SUCCESS:
       newState = objectAssign({}, state);
       newState[action.fieldName] = action.value;
-      newState.necessaryDataIsProvidedToSubmitLogin = necessaryDataIsProvidedToSubmitLogin(
+      newState.necessaryDataIsProvidedToSubmitLogin = loginSubmit.necessaryDataIsProvidedToSubmitLogin(
         newState
       );
       newState.dateModified = action.dateModified;

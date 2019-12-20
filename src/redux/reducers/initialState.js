@@ -8,5 +8,8 @@ export default {
   },
   locale: {
     locale: "en"
+  },
+  loading: {
+    loading: false
   }
 };

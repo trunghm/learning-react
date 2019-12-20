@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "normalize.css";
 import "./index.css";
 import "./styles/styles.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Root from "./Root";
 import * as serviceWorker from "./serviceWorker";
 import configureStore from "./redux/store/configureStore";
-import "normalize.css";
 
 const store = configureStore();
 

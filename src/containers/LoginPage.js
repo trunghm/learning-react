@@ -1,21 +1,16 @@
 import { connect } from "react-redux";
-import LoginView from "../views/Login/LoginView";
-import { bindActionCreators } from "redux";
-import * as loginActions from "../redux/actions/loginActions";
+import { LoginView } from "../views";
+import { loginActions } from "../redux/actions";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     loginUser: state.loginReducer
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginActions: bindActionCreators(loginActions, dispatch)
-  };
+const mapDispatchToProps = {
+  loginManual: loginActions.loginManual,
+  setMemberDetail: loginActions.setMemberDetail
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginView);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginView);
