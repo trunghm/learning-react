@@ -17,7 +17,9 @@ export function loginManual(loginInfo) {
     };
     return MembersService.loginManual(loginCredential).then(
       res => {
-        dispatch(loadMemberDetailSuccess(res));
+        if (res.success) {
+          dispatch(loadMemberDetailSuccess(res));
+        }
         dispatch(hideLoading());
         return res;
       },
@@ -94,7 +96,7 @@ export function removeMemberDetail() {
 export function logout() {
   return dispatch => {
     dispatch(showLoading());
-    /*    return MembersService.logout().then(
+    return MembersService.logout().then(
       res => {
         dispatch(removeMemberDetail());
         dispatch(hideLoading());
@@ -103,6 +105,6 @@ export function logout() {
       error => {
         throw error;
       }
-    );*/
+    );
   };
 }

@@ -3,7 +3,7 @@ import { LoginForm } from "../../components";
 import { object, func } from "prop-types";
 import { common } from "../../utils";
 import { toastr } from "react-redux-toastr";
-import pathKeys from "../../constants/pathKeys";
+import { pathKeys, toastrTypes } from "../../constants";
 
 const LoginView = ({ loginUserReducer, loginManual, setMemberDetail, ...props }) => {
   const [email, setEmail] = useState(loginUserReducer.email);
@@ -13,17 +13,21 @@ const LoginView = ({ loginUserReducer, loginManual, setMemberDetail, ...props })
     if (validateInputs(loginInfo)) {
       loginManual(loginInfo).then(
         resp => {
-          setMemberDetail(resp).then(
-            () => {
-              props.history.replace(pathKeys.DASHBOARD);
-            },
-            error => {
-              toastr.error("Error", error.message || error);
-            }
-          );
+          if (resp.success) {
+            setMemberDetail(resp.data).then(
+              () => {
+                props.history.replace(pathKeys.DASHBOARD);
+              },
+              error => {
+                toastr.error(toastrTypes.ERROR, error.message || error);
+              }
+            );
+          } else {
+            toastr.error(toastrTypes.ERROR, resp.message);
+          }
         },
         error => {
-          toastr.error("Error", error);
+          toastr.error(toastrTypes.ERROR, error);
           console.warn("=== LOGIN VIEW ERROR:", error);
         }
       );
@@ -32,11 +36,11 @@ const LoginView = ({ loginUserReducer, loginManual, setMemberDetail, ...props })
 
   function validateInputs({ email, password }) {
     if (!common.validateEmail(email)) {
-      toastr.warning("Invalid", "Please input a valid email!");
+      toastr.warning(toastrTypes.INVALID, "Please input a valid email!");
       return false;
     }
     if (common.isEmpty(password)) {
-      toastr.warning("Empty", "Please input a password to login!");
+      toastr.warning(toastrTypes.EMPTY, "Please input a password to login!");
       return false;
     }
 

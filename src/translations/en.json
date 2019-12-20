@@ -20,5 +20,7 @@
   "login.remember_me": "Remember me",
   "login.forgot_password?": "Forgot password?",
   "login.login": "Login",
+  "login.validate_invalid_email": "Please input a valid email!",
+  "login.validate_missing_password": "Please input a password to login!",
   "dashboard.header": "Dashboard"
 }

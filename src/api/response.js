@@ -28,7 +28,7 @@ export default class Response {
 
   static createResponseData(res) {
     const response = new Response({
-      error: res.statusCode,
+      statusCode: res.statusCode,
       data: res.data,
       message: res.message
     });

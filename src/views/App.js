@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import React from "react";
 import { AboutView, HomeView, NotFoundView, DashboardView } from "../views";
 import { LoginPage } from "../containers";
-import { Header } from "../components/common";
+import { Header, Loading } from "../components/common";
 import { IntlProvider } from "react-intl";
 import { messages_en, messages_vi } from "../translations";
 import PropTypes from "prop-types";
@@ -13,12 +13,6 @@ const messages = {
   en: messages_en,
   vi: messages_vi
 };
-
-//const language = navigator.language.split(/[-_]/)[0];
-
-// This is a class-based component because the current
-// version of hot reloading won't hot reload a stateless
-// component at the top-level.
 
 class App extends React.PureComponent {
   render() {
@@ -31,6 +25,7 @@ class App extends React.PureComponent {
         messages={messages[language]}
       >
         <div>
+          <Loading loading={this.props.loading}/>
           <Header/>
           <Switch>
             <Route exact path="/" component={HomeView}/>
