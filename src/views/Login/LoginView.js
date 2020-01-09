@@ -5,7 +5,12 @@ import { common } from "../../utils";
 import { toastr } from "react-redux-toastr";
 import { pathKeys, toastrTypes } from "../../constants";
 
-const LoginView = ({ loginUserReducer, loginManual, setMemberDetail, ...props }) => {
+const LoginView = ({
+                     loginUserReducer,
+                     loginManual,
+                     setMemberDetail,
+                     ...props
+                   }) => {
   const [email, setEmail] = useState(loginUserReducer.email);
   const [password, setPassword] = useState(loginUserReducer.password);
 

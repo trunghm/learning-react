@@ -7,7 +7,7 @@ export default {
     isLoggedIn: false
   },
   locale: {
-    locale: "en"
+    locale: "vi"
   },
   loading: {
     loading: false

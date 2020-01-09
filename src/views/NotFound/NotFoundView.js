@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { i18N } from "../../utils/intl";
+import { useTranslation } from "react-i18next";
 
 const NotFoundView = () => {
+  const { t } = useTranslation();
   return (
     <div>
-      <h4>{i18N.t("notfound.header")}</h4>
-      <Link to="/"> {i18N.t("notfound.go_back_to_home")} </Link>
+      <h4>{t("notfound.header")}</h4>
+      <Link to="/"> {t("notfound.go_back_to_home")} </Link>
     </div>
   );
 };

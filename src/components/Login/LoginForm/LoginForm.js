@@ -1,8 +1,8 @@
 import React from "react";
 import { CustomTextInput } from "../../common";
 import { loginUserType } from "../../../types";
-import { i18N } from "../../../utils/intl";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
   const onSubmit = () => {
@@ -11,6 +11,8 @@ const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div>
       <h2>Login Form</h2>
@@ -18,26 +20,26 @@ const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
         <tbody>
         <tr>
           <td>
-            <label htmlFor="email">{i18N.t("login.email_label")}</label>
+            <label htmlFor="email">{t("login.email_label")}</label>
           </td>
           <td>
             <CustomTextInput
               onChange={handleFieldChange}
               name="email"
-              placeholder={i18N.t("login.email_placeholder_text")}
+              placeholder={t("login.email_placeholder_text")}
               value={loginInfo.email}
             />
           </td>
         </tr>
         <tr>
           <td>
-            <label htmlFor="password">{i18N.t("login.password_label")}</label>
+            <label htmlFor="password">{t("login.password_label")}</label>
           </td>
           <td>
             <CustomTextInput
               onChange={handleFieldChange}
               name="password"
-              placeholder={i18N.t("login.password_placeholder_text")}
+              placeholder={t("login.password_placeholder_text")}
               value={loginInfo.password}
             />
           </td>
