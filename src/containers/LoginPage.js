@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   loginManual: loginActions.loginManual,
-  setMemberDetail: loginActions.setMemberDetail
+  setMemberDetail: loginActions.setMemberDetail,
+  getMemberDetail: loginActions.getMemberDetail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

@@ -14,7 +14,6 @@ import i18next from "../translations/i18next";
 
 class App extends React.PureComponent {
   constructor(props) {
-    console.log("constructor");
     super(props);
     this.state = {
       checked: false,
@@ -26,20 +25,15 @@ class App extends React.PureComponent {
     this.checkLogin();
   }
 
-  componentDidMount() {
-    console.log("componentDidMount");
-  }
-
   setRender(isLoggedIn = false) {
     this.setState({ isLoggedIn: isLoggedIn, checked: true });
   }
 
   checkLogin() {
-    console.log("checkLogin");
-    debugger;
     this.props.getMemberDetail().then(
       result => {
         if (isEmpty(result) || isEmpty(result.token)) {
+
           this.setRender(false);
         } else {
           global[globalKeys.AUTH_TOKEN] = result.token;
@@ -53,7 +47,6 @@ class App extends React.PureComponent {
   }
 
   render() {
-    console.log("render");
     return (
       <I18nextProvider i18n={i18next}>
         <div>
