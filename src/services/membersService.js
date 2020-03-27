@@ -14,6 +14,16 @@ class MemberService extends BaseService {
     }, this.handleError);
   }
 
+  loginManualMock(loginInfo) {
+    return authApiMock.loginManualMock(loginInfo).then(response => {
+      return {
+        data: new MemberDetail(response.data),
+        message: response.message,
+        success: response.success
+      };
+    }, this.handleError);
+  }
+
   logout() {
 
     return authApiMock.logout().then(response => {

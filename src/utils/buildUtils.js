@@ -2,7 +2,7 @@
 const dev = {};
 dev.buildMode = "DEV";
 dev.serverSchema = "https";
-dev.serverHost = "chatapi.redhotpie.com.au"; // 'api.server.dev';
+dev.serverHost = "tstchatapi.redhotpie.com.au:2083/"; // 'api.server.dev';
 
 const staging = {};
 staging.buildMode = "DEV";

@@ -1,9 +1,8 @@
 import { pathKeys } from "../../../constants";
 import { Route, Redirect } from "react-router-dom";
-import React from "react";
+import React  from "react";
 
 const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => {
-  console.log("ProtectedRoute", isAuthenticated);
   return (
     <Route
       {...rest}

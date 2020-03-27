@@ -1,8 +1,10 @@
 import React from "react";
-import { CustomTextInput } from "../../common";
 import { loginUserType } from "../../../types";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
+import "./LoginForm.scss";
+import { Button, TextField } from "@material-ui/core";
+
 
 const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
   const onSubmit = () => {
@@ -14,42 +16,43 @@ const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
   const { t } = useTranslation();
 
   return (
-    <div>
-      <h2>Login Form</h2>
-      <table>
-        <tbody>
-        <tr>
-          <td>
-            <label htmlFor="email">{t("login.email_label")}</label>
-          </td>
-          <td>
-            <CustomTextInput
-              onChange={handleFieldChange}
-              name="email"
-              placeholder={t("login.email_placeholder_text")}
-              value={loginInfo.email}
-            />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label htmlFor="password">{t("login.password_label")}</label>
-          </td>
-          <td>
-            <CustomTextInput
-              onChange={handleFieldChange}
-              name="password"
-              placeholder={t("login.password_placeholder_text")}
-              value={loginInfo.password}
-            />
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <div className='loginModule'>
+      <form>
+        <h2>Login Form</h2>
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Email Address"
+          name="email"
+          autoComplete="email"
+          autoFocus
+          onChange={handleFieldChange}
+          placeholder={t("login.email_placeholder_text")}
+          value={loginInfo.email}
+        />
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="Password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          onChange={handleFieldChange}
+          placeholder={t("login.password_placeholder_text")}
+          value={loginInfo.password}
+        />
+        <hr/>
+        <div className="btnLogin">
+          <Button onClick={onSubmit}>Login</Button>
+        </div>
+      </form>
 
-      <hr/>
-
-      <input type="submit" value="Login" onClick={onSubmit}/>
     </div>
   );
 };

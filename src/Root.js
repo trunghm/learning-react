@@ -1,18 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, Fragment, Suspense } from "react";
 import PropTypes from "prop-types";
-import { BrowserRouter as Router } from "react-router-dom";
+import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
+import { BrowserRouter} from "react-router-dom";
 import { App } from "./views";
 import { Provider as ReduxProvider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
+import theme from "./theme";
+import GlobalStyles from "./GlobalStyles";
 
 export default class Root extends Component {
   render() {
     const { store } = this.props;
     return (
       <ReduxProvider store={store}>
-        <Router>
+        <BrowserRouter>
+          <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <GlobalStyles />
+            <Suspense fallback={<Fragment />}>
           <App/>
-        </Router>
+            </Suspense>
+          </MuiThemeProvider>
+        </BrowserRouter>
 
         <ReduxToastr
           timeOut={2000}

@@ -10,6 +10,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   loginManual: loginActions.loginManual,
+  loginManualMock: loginActions.loginManualMock,
   setMemberDetail: loginActions.setMemberDetail,
   getMemberDetail: loginActions.getMemberDetail
 };

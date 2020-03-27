@@ -30,6 +30,28 @@ export function loginManual(loginInfo) {
   };
 }
 
+export function loginManualMock(loginInfo) {
+  return dispatch => {
+    dispatch(showLoading());
+    let loginCredential = {
+      xmppId: loginInfo.email,
+      password: loginInfo.password
+    };
+    return MembersService.loginManualMock(loginCredential).then(
+      res => {
+        if (res.success) {
+          dispatch(loadMemberDetailSuccess(res));
+        }
+        dispatch(hideLoading());
+        return res;
+      },
+      error => {
+        throw error;
+      }
+    );
+  };
+}
+
 export function setMemberDetail(memberDetail, useCookie = true) {
   return dispatch => {
     return new Promise((resolve, reject) => {
@@ -61,7 +83,7 @@ export function getMemberDetail() {
         let savedDetail = sessionStorage.getItem(
           globalKeys.ACCESS_MEMBER_DETAIL
         );
-        if (common.isEmpty(savedDetail)) {
+        if (common.isEmpty(savedDetail) || savedDetail === 'null') {
           savedDetail = cookie.getCookie(globalKeys.ACCESS_MEMBER_DETAIL);
         }
         if (!common.isEmpty(savedDetail)) {

@@ -10,6 +10,7 @@ import initialState from "./initialState";
 // and update values on the copy.
 
 export default function loginReducer(state = initialState.loginUser, action) {
+  console.log("loginReducer", action, state, objectAssign({}, state,action.detail,{ isLoggedIn: true }));
   let newState;
 
   switch (action.type) {
@@ -29,7 +30,12 @@ export default function loginReducer(state = initialState.loginUser, action) {
       }
 
       return newState;
+    case MEMBER_ACTION_TYPE.LOAD_LOGIN_MEMBER_DETAIL_SUCCESS:
+      if(action.detail === null){
+        return objectAssign({}, state, { isLoggedIn: false });
+      }
+      return objectAssign({}, state, { isLoggedIn: true });
     default:
       return state;
+    }
   }
-}

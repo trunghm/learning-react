@@ -1,54 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LoginForm } from "../../components";
 import { object, func } from "prop-types";
 import { common } from "../../utils";
 import { toastr } from "react-redux-toastr";
-import { globalKeys, pathKeys, toastrTypes } from "../../constants";
+import { pathKeys, toastrTypes } from "../../constants";
 import { useTranslation } from "react-i18next";
-import { isEmpty } from "../../utils/common";
 import { Redirect } from "react-router-dom";
 
 const LoginView = ({
-                     loginUserReducer,
-                     loginManual,
-                     setMemberDetail,
-                     getMemberDetail,
-                     ...props
-                   }) => {
-  useEffect(() => {
-    checkLoggedIn();
-  });
-
+  loginUser,
+  loginManual,
+  loginManualMock,
+  setMemberDetail,
+  getMemberDetail,
+  ...props
+}) => {
   const { t } = useTranslation();
-  const [email, setEmail] = useState(loginUserReducer.email);
-  const [password, setPassword] = useState(loginUserReducer.password);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [checkedAuth, setCheckedAuth] = useState(false);
-  const { from } = props.location.state || { from: { pathname: pathKeys.LOGIN } };
-
-  function checkLoggedIn() {
-    getMemberDetail().then(
-      result => {
-        if (isEmpty(result) || isEmpty(result.token)) {
-          setIsLoggedIn(false);
-        } else {
-          global[globalKeys.AUTH_TOKEN] = result.token;
-          setIsLoggedIn(true);
-          setCheckedAuth(true);
-        }
-      },
-      () => {
-        setIsLoggedIn(false);
-      }
-    );
-  }
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { from } = props.location.state || {
+    from: { pathname: pathKeys.LOGIN }
+  };
   function onPressLogin(loginInfo) {
     if (validateInputs(loginInfo)) {
       loginManual(loginInfo).then(
         resp => {
           if (resp.success) {
-            debugger;
             setMemberDetail(resp.data).then(
               () => {
                 props.history.replace(pathKeys.DASHBOARD);
@@ -92,10 +69,10 @@ const LoginView = ({
     }
   }
 
-  console.log("isLoggedIn", checkedAuth, isLoggedIn, from);
-  if (checkedAuth && from.pathname !== pathKeys.LOGIN) {
-
-    return <Redirect to={from}/>;
+  if (loginUser.isLoggedIn && from.pathname !== pathKeys.LOGIN) {
+    return <Redirect to={from} />;
+  } else if (loginUser.isLoggedIn) {
+    return <Redirect to={{ pathname: pathKeys.ROOT }} />;
   }
 
   return (
@@ -108,23 +85,23 @@ const LoginView = ({
 };
 
 LoginView.propTypes = {
+  loginManualMock: func.isRequired,
   loginManual: func.isRequired,
   setMemberDetail: func.isRequired,
   getMemberDetail: func.isRequired,
-  loginUserReducer: object.isRequired
+  loginUser: object.isRequired
 };
 
 LoginView.defaultProps = {
-  loginUserReducer: {
+  loginUser: {
     userName: "",
     password: ""
   },
-  loginManual: () => {
-  },
-  setMemberDetail: () => {
-  },
-  getMemberDetail: () => {
-  }
+  loginManualMock: () => {},
+
+  loginManual: () => {},
+  setMemberDetail: () => {},
+  getMemberDetail: () => {}
 };
 
 export default LoginView;
