@@ -6,9 +6,8 @@ import "./styles/styles.scss";
 
 import Root from "./Root";
 import * as serviceWorker from "./serviceWorker";
+import store from './utils/redux/store';
 import configureStore from "./redux/store/configureStore";
-
-const store = configureStore();
 
 ReactDOM.render(
   <Root store={store}/>,

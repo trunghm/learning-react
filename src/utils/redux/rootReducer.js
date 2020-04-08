@@ -1,17 +1,15 @@
-import { combineReducers } from "redux";
-import loginReducer from "./loginReducer";
-import localeReducer from "./localeReducer";
+import { combineReducers } from "@reduxjs/toolkit";
 import { connectRouter } from "connected-react-router";
 import { reducer as toastrReducer } from "react-redux-toastr";
-import loadingReducer from "./loadingReducer";
+import appReducer from "../../views/App/AppReducer";
+import loginReducer from "../../views/Login/loginReducer";
 
 const rootReducer = history =>
   combineReducers({
     router: connectRouter(history),
-    loginReducer,
-    localeReducer,
     toastr: toastrReducer,
-    loadingReducer
+    appReducer,
+    loginReducer, 
   });
 
 export default rootReducer;

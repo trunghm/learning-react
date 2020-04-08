@@ -1,21 +1,23 @@
 import { Route, Switch } from "react-router-dom";
 import React,{ lazy } from "react";
-import { LoginPage, DashboardPage } from "../containers";
-import { Header, Loading, ProtectedRoute } from "../components/common";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { pathKeys } from "../constants";
-import { loginActions } from "../redux/actions";
-import { isEmpty } from "../utils/common";
-import { globalKeys } from "../constants";
 import { I18nextProvider } from "react-i18next";
-import i18next from "../translations/i18next";
 import styled from "styled-components";
-import { DrawerLeft } from "../components";
-import { LAYOUT } from "../constants/common";
-const AboutView = lazy(() => import("../views/About/AboutView"));
-const HomeView = lazy(() => import("../views/Home/HomeView"));
-const NotFoundView = lazy(() => import("../views/NotFound/NotFoundView"));
+import { Header, Loading, ProtectedRoute } from "../../components/common";
+import { pathKeys , globalKeys } from "../../constants";
+import { loginManual } from "../Login/LoginActions";
+import { isEmpty } from "../../utils/common";
+
+import i18next from "../../translations/i18next";
+import { DrawerLeft } from "../../components";
+import { LAYOUT } from "../../constants/common";
+import { LoginPage, DashboardPage } from "../../containers";
+
+const AboutView = lazy(() => import("../About/AboutView"));
+const HomeView = lazy(() => import("../Home/HomeView"));
+const NotFoundView = lazy(() => import("../NotFound/NotFoundView"));
+
 const AppWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -52,7 +54,7 @@ class App extends React.PureComponent {
   }
 
   setRender(isLoggedIn = false) {
-    this.setState({ isLoggedIn: isLoggedIn, checked: true });
+    this.setState({ isLoggedIn, checked: true });
   }
 
   checkLogin() {
@@ -80,7 +82,7 @@ class App extends React.PureComponent {
       <I18nextProvider i18n={i18next}>
         <div>
           <Loading loading={this.props.loading}/>
-          <Layout layout={layout} props={{logout:logout}}>
+          <Layout layout={layout} props={{logout}}>
             {!isLoggedIn && <Header />}
             <Switch>
               <Route exact path="/" component={HomeView}/>
@@ -116,14 +118,13 @@ const mapDispatchToProps = {
 App.propTypes = {
   locale: PropTypes.string,
   loading: PropTypes.bool,
-  getMemberDetail: PropTypes.func.isRequired
+  getMemberDetail: PropTypes.func
 };
 
 App.defaultProps = {
   locale: "",
   loading: false,
-  getMemberDetail: () => {
-  }
+  getMemberDetail: () => {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

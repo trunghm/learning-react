@@ -1,4 +1,8 @@
 export default {
+  app: {
+    locale: "vi",
+    loading: false
+  },
   loginUser: {
     userName: "",
     password: "",
@@ -6,10 +10,4 @@ export default {
     necessaryDataIsProvidedToSubmitLogin: false,
     isLoggedIn: false
   },
-  locale: {
-    locale: "vi"
-  },
-  loading: {
-    loading: false
-  }
 };

@@ -1,7 +1,7 @@
 import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
 import { common, cookie } from "../../utils";
 import { globalKeys } from "../../constants";
-import { showLoading, hideLoading } from "./appActions";
+import { showLoading, hideLoading } from "../App/appActions";
 import MembersService from "../../services/membersService";
 
 export function loadMemberDetailSuccess(detail) {
@@ -11,7 +11,7 @@ export function loadMemberDetailSuccess(detail) {
 export function loginManual(loginInfo) {
   return dispatch => {
     dispatch(showLoading());
-    let loginCredential = {
+    const loginCredential = {
       xmppId: loginInfo.email,
       password: loginInfo.password
     };
@@ -33,7 +33,7 @@ export function loginManual(loginInfo) {
 export function loginManualMock(loginInfo) {
   return dispatch => {
     dispatch(showLoading());
-    let loginCredential = {
+    const loginCredential = {
       xmppId: loginInfo.email,
       password: loginInfo.password
     };
