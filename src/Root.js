@@ -1,10 +1,10 @@
 import React, { Component, Fragment, Suspense } from "react";
 import PropTypes from "prop-types";
 import { MuiThemeProvider, CssBaseline } from "@material-ui/core";
-import { BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-import ReduxToastr from "react-redux-toastr";
-import { App } from "./views";
+// import ReduxToastr from "react-redux-toastr";
+import App from "./views/App";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
 
@@ -21,7 +21,7 @@ export default class Root extends Component {
           </MuiThemeProvider>
         </BrowserRouter>
 
-        <ReduxToastr
+        {/* <ReduxToastr
           timeOut={2000}
           newestOnTop={false}
           preventDuplicates
@@ -31,7 +31,7 @@ export default class Root extends Component {
           transitionOut="fadeOut"
           progressBar={false}
           closeOnToastrClick
-        />
+        /> */}
       </ReduxProvider>
     );
   }

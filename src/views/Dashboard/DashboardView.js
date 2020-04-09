@@ -1,24 +1,24 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { toastrTypes } from "../../constants";
 import { toastr } from "react-redux-toastr";
 import { func } from "prop-types";
 import { Button } from "@material-ui/core";
+import { toastrTypes } from "../../constants";
 
 const DashboardView = props => {
-  const {logout} = props;
+  const { logout } = props;
   const { t } = useTranslation();
-  const handleLogOut = ()=>{
+  const handleLogOut = () => {
     logout().then(
       resp => {
-        console.log('logout ', resp)
+        console.log("logout ", resp);
       },
       error => {
         toastr.error(toastrTypes.ERROR, error);
         console.warn("LOG OUT ERROR:", error);
       }
     );
-  }
+  };
   return (
     <div>
       <h1>{t("dashboard.header")}</h1>
@@ -27,18 +27,14 @@ const DashboardView = props => {
       </Button>
     </div>
   );
-}
+};
 
 DashboardView.propTypes = {
-  logout: func.isRequired
+  logout: func
 };
 
 DashboardView.defaultProps = {
-  logout: () => {
-  },
-
+  logout: () => {}
 };
 
 export default DashboardView;
-
-

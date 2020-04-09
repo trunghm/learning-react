@@ -1,6 +1,11 @@
--import { connect } from "react-redux";
-import LoginView from './LoginView';
-import { loginActions } from "../redux/actions";
+import { connect } from "react-redux";
+import LoginView from "./LoginView";
+import {
+  loginManual,
+  loginManualMock,
+  setMemberDetail,
+  getMemberDetail
+} from "./LoginActions";
 
 const mapStateToProps = state => {
   return {
@@ -9,10 +14,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  loginManual: loginActions.loginManual,
-  loginManualMock: loginActions.loginManualMock,
-  setMemberDetail: loginActions.setMemberDetail,
-  getMemberDetail: loginActions.getMemberDetail
+  loginManual,
+  loginManualMock,
+  setMemberDetail,
+  getMemberDetail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginView);

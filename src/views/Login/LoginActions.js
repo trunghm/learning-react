@@ -1,7 +1,7 @@
 import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
 import { common, cookie } from "../../utils";
 import { globalKeys } from "../../constants";
-import { showLoading, hideLoading } from "../App/appActions";
+import { showLoading, hideLoading } from "../App/AppActions";
 import MembersService from "../../services/membersService";
 
 export function loadMemberDetailSuccess(detail) {
@@ -83,7 +83,7 @@ export function getMemberDetail() {
         let savedDetail = sessionStorage.getItem(
           globalKeys.ACCESS_MEMBER_DETAIL
         );
-        if (common.isEmpty(savedDetail) || savedDetail === 'null') {
+        if (common.isEmpty(savedDetail) || savedDetail === "null") {
           savedDetail = cookie.getCookie(globalKeys.ACCESS_MEMBER_DETAIL);
         }
         if (!common.isEmpty(savedDetail)) {

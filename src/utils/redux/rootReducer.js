@@ -6,10 +6,10 @@ import loginReducer from "../../views/Login/loginReducer";
 
 const rootReducer = history =>
   combineReducers({
-    router: connectRouter(history),
-    toastr: toastrReducer,
-    appReducer,
-    loginReducer, 
+    // router: connectRouter(history),
+    // toastr: toastrReducer,
+    appReducer
+    // loginReducer,
   });
 
 export default rootReducer;
