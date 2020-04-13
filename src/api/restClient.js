@@ -41,10 +41,6 @@ class RestClient {
         global[globalKeys.AUTH_TOKEN] !== undefined &&
         global[globalKeys.AUTH_TOKEN] !== null
       ) {
-        console.log(
-          "============== ADD AUTH TOKEN HEADER ==============",
-          global[globalKeys.AUTH_TOKEN]
-        );
         this.headers.Authorization = `Bearer ${global[globalKeys.AUTH_TOKEN]}`;
       }
 
@@ -52,10 +48,6 @@ class RestClient {
         global[globalKeys.ACCESS_TOKEN] !== undefined &&
         global[globalKeys.ACCESS_TOKEN] !== null
       ) {
-        console.log(
-          "============== ADD ACCESS TOKEN HEADER ==============",
-          global[globalKeys.ACCESS_TOKEN]
-        );
         this.headers["x-access-token"] = global[globalKeys.ACCESS_TOKEN];
       }
     }
@@ -83,7 +75,6 @@ class RestClient {
             return Response.createCustomResponseData(res.data);
           })
           .catch(e => {
-            console.log("ERROR: ApiMethod.GET", e.message);
             return response;
           });
       }
@@ -91,7 +82,6 @@ class RestClient {
         return this.restClient
           .post(this.endpoint, body)
           .then(res => {
-            console.log("res", res);
             if (this.BASE_URL === Urls.baseUrl) {
               return Response.createResponseData(res.data || {});
             }
@@ -100,7 +90,6 @@ class RestClient {
             return response;
           })
           .catch(e => {
-            console.log("ERROR: ApiMethod.POST", e.message);
             return response;
           });
       }
@@ -115,7 +104,6 @@ class RestClient {
             return Response.createCustomResponseData(res.data);
           })
           .catch(e => {
-            console.log("ERROR: ApiMethod.PUT", e.message);
             return response;
           });
       }
@@ -130,7 +118,6 @@ class RestClient {
             return Response.createCustomResponseData(res.data);
           })
           .catch(e => {
-            console.log("ERROR: ApiMethod.DELETE", e.message);
             return response;
           });
       }
@@ -145,7 +132,6 @@ class RestClient {
             return Response.createCustomResponseData(res.data);
           })
           .catch(e => {
-            console.log("ERROR: ApiMethod.PATCH", e.message);
             return response;
           });
       }

@@ -10,12 +10,9 @@ const DashboardView = props => {
   const { t } = useTranslation();
   const handleLogOut = () => {
     logout().then(
-      resp => {
-        console.log("logout ", resp);
-      },
+      resp => {},
       error => {
         toastr.error(toastrTypes.ERROR, error);
-        console.warn("LOG OUT ERROR:", error);
       }
     );
   };

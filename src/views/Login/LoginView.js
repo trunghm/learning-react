@@ -18,6 +18,7 @@ const LoginView = ({
   const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line react/destructuring-assignment
   const { from } = props.location.state || {
     from: { pathname: pathKeys.LOGIN }
   };
@@ -54,7 +55,6 @@ const LoginView = ({
         },
         error => {
           toastr.error(toastrTypes.ERROR, error);
-          console.warn("LOGIN VIEW ERROR:", error);
         }
       );
     }
@@ -91,7 +91,14 @@ LoginView.propTypes = {
   loginManual: func.isRequired,
   setMemberDetail: func.isRequired,
   getMemberDetail: func.isRequired,
-  loginUser: object.isRequired
+  loginUser: object.isRequired,
+  location: object,
+  history: object
+};
+
+LoginView.defaultProps = {
+  location: {},
+  history: {}
 };
 
 export default LoginView;

@@ -6,7 +6,7 @@ import "./styles/styles.scss";
 
 import Root from "./Root";
 import * as serviceWorker from "./serviceWorker";
-import store from "./utils/redux/store";
+import store from "./configs/redux/store";
 
 ReactDOM.render(<Root store={store} />, document.getElementById("root"));
 

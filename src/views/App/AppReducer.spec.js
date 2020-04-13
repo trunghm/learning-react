@@ -1,5 +1,5 @@
 import app, { showLoading, hideLoading } from "./AppReducer";
-import initialState from "../../utils/redux/initialState";
+import initialState from "../../configs/redux/initialState";
 
 it("should handle inital state", () => {
   expect(app(initialState.appReducer, {})).toEqual({

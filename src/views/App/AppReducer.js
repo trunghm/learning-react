@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import initialState from "../../utils/redux/initialState";
+import initialState from "../../configs/redux/initialState";
 
 // IMPORTANT: Note that with @reduxjs/toolkit, you can change state directly.
 

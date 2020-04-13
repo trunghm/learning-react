@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { bool } from "prop-types";
 import "./Loading.scss";
 import cn from "classnames";
 import images from "../../../images";
@@ -21,12 +21,14 @@ const { string } = PropTypes;
 
 Loading.propTypes = {
   msg: string,
-  className: string
+  className: string,
+  loading: bool
 };
 
 Loading.defaultProps = {
   msg: "",
-  className: ""
+  className: "",
+  loading: false
 };
 
 export default Loading;

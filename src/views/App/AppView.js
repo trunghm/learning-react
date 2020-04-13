@@ -122,7 +122,8 @@ App.propTypes = {
 App.defaultProps = {
   locale: "",
   loading: false,
-  getMemberDetail: () => {}
+  getMemberDetail: () => {},
+  onLogout: () => {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

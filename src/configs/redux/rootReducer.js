@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { connectRouter } from "connected-react-router";
 import { reducer as toastrReducer } from "react-redux-toastr";
-import { history } from "../history";
+import { history } from "../../utils/history";
 import appReducer from "../../views/App/AppReducer";
 import loginReducer from "../../views/Login/loginReducer";
 

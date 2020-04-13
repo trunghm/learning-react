@@ -70,7 +70,7 @@
     "import/prefer-default-export": 0,
     "no-param-reassign": 0,
     "react/require-default-props":1,
-    "react/destructuring-assignment": ["never"],
+    "react/destructuring-assignment": 0,
     "react/jsx-props-no-spreading": 0
   }
 }

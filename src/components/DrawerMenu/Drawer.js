@@ -12,6 +12,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import PropTypes from "prop-types";
 import ContentMenuLeft from "./ContentMenuLeft";
 import ContentMenuRight from "./ContentMenuRight";
 
@@ -108,6 +109,19 @@ const Header = ({ open, logout, handleDrawerOpen }) => {
   );
 };
 
+Header.propTypes = {
+  open: PropTypes.bool,
+  logout: PropTypes.func,
+  handleDrawerOpen: PropTypes.func
+};
+
+Header.defaultProps = {
+  open: false,
+  logout: () => {},
+  handleDrawerOpen: () => {}
+};
+
+// eslint-disable-next-line react/no-multi-comp
 export default function DrawerLeft({ children = null, logout = () => {} }) {
   const classes = useStyles();
   const theme = useTheme();
@@ -157,3 +171,13 @@ export default function DrawerLeft({ children = null, logout = () => {} }) {
     </div>
   );
 }
+
+DrawerLeft.propTypes = {
+  children: PropTypes.element,
+  logout: PropTypes.func
+};
+
+DrawerLeft.defaultProps = {
+  children: null,
+  logout: () => {}
+};

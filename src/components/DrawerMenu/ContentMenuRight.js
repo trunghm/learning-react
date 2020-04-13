@@ -1,30 +1,31 @@
-import { IconButton, Menu, MenuItem} from "@material-ui/core";
+import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import React from "react";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-
+import PropTypes from "prop-types";
 
 const ContentMenuRight = ({ logout }) => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const openMenuRight = Boolean(anchorEl);
-    const handleMenuRight = event => {
-      setAnchorEl(event.currentTarget);
-    };
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenuRight = Boolean(anchorEl);
+  const handleMenuRight = event => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    const handleCloseRight = () => {
-      setAnchorEl(null);
-    };
+  const handleCloseRight = () => {
+    setAnchorEl(null);
+  };
 
-    const handleProfile = () => {
-      handleCloseRight();
-    };
+  const handleProfile = () => {
+    handleCloseRight();
+  };
 
-    const handleLogout = () => {
-      handleCloseRight();
-      if (logout instanceof Function) {
-        logout();
-      }
-    };
-    return <div>
+  const handleLogout = () => {
+    handleCloseRight();
+    if (logout instanceof Function) {
+      logout();
+    }
+  };
+  return (
+    <div>
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"
@@ -32,7 +33,7 @@ const ContentMenuRight = ({ logout }) => {
         onClick={handleMenuRight}
         color="inherit"
       >
-        <AccountCircle/>
+        <AccountCircle />
       </IconButton>
       <Menu
         id="menu-appbar"
@@ -52,8 +53,15 @@ const ContentMenuRight = ({ logout }) => {
         <MenuItem onClick={handleProfile}>Profile</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
-    </div>;
-  }
-;
+    </div>
+  );
+};
+ContentMenuRight.propTypes = {
+  logout: PropTypes.func
+};
+
+ContentMenuRight.defaultProps = {
+  logout: () => {}
+};
 
 export default ContentMenuRight;

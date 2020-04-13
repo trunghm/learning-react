@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import initialState from "../../utils/redux/initialState";
+import initialState from "../../configs/redux/initialState";
 import { loginSubmit } from "../../utils";
 
 const loginReducer = createSlice({
