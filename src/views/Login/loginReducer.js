@@ -1,41 +1,40 @@
-import objectAssign from "object-assign";
-import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
-import { loginSubmit } from "../../utils";
+import { createSlice } from "@reduxjs/toolkit";
 import initialState from "../../utils/redux/initialState";
+import { loginSubmit } from "../../utils";
 
-// IMPORTANT: Note that with Redux, state should NEVER be changed.
-// State is considered immutable. Instead,
-// create a copy of the state passed and set new values on the copy.
-// Note that I'm using Object.assign to create a copy of current state
-// and update values on the copy.
-
-export default function loginReducer(state = initialState.loginUser, action) {
-  console.log("loginReducer", action, state, objectAssign({}, state,action.detail,{ isLoggedIn: true }));
-  let newState;
-
-  switch (action.type) {
-    case MEMBER_ACTION_TYPE.LOGIN_SUCCESS:
-      return objectAssign({}, state, { isLoggedIn: true });
-
-    case MEMBER_ACTION_TYPE.LOGIN_FIELD_CHANGE_SUCCESS:
-      newState = objectAssign({}, state);
-      newState[action.fieldName] = action.value;
-      newState.necessaryDataIsProvidedToSubmitLogin = loginSubmit.necessaryDataIsProvidedToSubmitLogin(
-        newState
+const loginReducer = createSlice({
+  name: "login",
+  initialState: initialState.loginReducer,
+  reducers: {
+    loginSuccess: state => {
+      state.isLoggedIn = true;
+    },
+    loginFieldChangeSuccess: (state, action) => {
+      const { fieldName, value, dateModified } = action.payload;
+      state[fieldName] = value;
+      state.dateModified = dateModified;
+      state.necessaryDataIsProvidedToSubmitLogin = loginSubmit.necessaryDataIsProvidedToSubmitLogin(
+        state
       );
-      newState.dateModified = action.dateModified;
-
-      if (newState.necessaryDataIsProvidedToSubmitLogin) {
-        newState.canLogin = true;
+      if (state.necessaryDataIsProvidedToSubmitLogin) {
+        state.canLogin = true;
       }
-
-      return newState;
-    case MEMBER_ACTION_TYPE.LOAD_LOGIN_MEMBER_DETAIL_SUCCESS:
-      if(action.detail === null){
-        return objectAssign({}, state, { isLoggedIn: false });
+    },
+    loadLoginMemberDetailSuccess: (state, action) => {
+      const { detail } = action.payload;
+      if (detail === null) {
+        state.isLoggedIn = false;
+      } else {
+        state.isLoggedIn = true;
       }
-      return objectAssign({}, state, { isLoggedIn: true });
-    default:
-      return state;
     }
   }
+});
+
+export const {
+  loginSuccess,
+  loginFieldChangeSuccess,
+  loadLoginMemberDetailSuccess
+} = loginReducer.actions;
+
+export default loginReducer.reducer;

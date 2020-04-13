@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { LoginForm } from "../../components";
 import { object, func } from "prop-types";
-import { common } from "../../utils";
 import { toastr } from "react-redux-toastr";
-import { pathKeys, toastrTypes } from "../../constants";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import { pathKeys, toastrTypes } from "../../constants";
+import { common } from "../../utils";
+import { LoginForm } from "../../components";
 
 const LoginView = ({
   loginUser,
@@ -71,7 +71,8 @@ const LoginView = ({
 
   if (loginUser.isLoggedIn && from.pathname !== pathKeys.LOGIN) {
     return <Redirect to={from} />;
-  } else if (loginUser.isLoggedIn) {
+  }
+  if (loginUser.isLoggedIn) {
     return <Redirect to={{ pathname: pathKeys.ROOT }} />;
   }
 
@@ -98,7 +99,6 @@ LoginView.defaultProps = {
     password: ""
   },
   loginManualMock: () => {},
-
   loginManual: () => {},
   setMemberDetail: () => {},
   getMemberDetail: () => {}

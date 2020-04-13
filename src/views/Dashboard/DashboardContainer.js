@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { DashboardView } from "..";
+import DashboardView from "./DashboardView";
 import { logout } from "../Login/LoginActions";
 
 const mapStateToProps = state => {

@@ -1,12 +1,8 @@
-import { MEMBER_ACTION_TYPE } from "../../constants/actionTypes";
 import { common, cookie } from "../../utils";
 import { globalKeys } from "../../constants";
-import { showLoading, hideLoading } from "../App/AppActions";
+import { showLoading, hideLoading } from "../App/AppReducer";
+import { loadLoginMemberDetailSuccess } from "./loginReducer";
 import MembersService from "../../services/membersService";
-
-export function loadMemberDetailSuccess(detail) {
-  return { type: MEMBER_ACTION_TYPE.LOAD_LOGIN_MEMBER_DETAIL_SUCCESS, detail };
-}
 
 export function loginManual(loginInfo) {
   return dispatch => {
@@ -18,7 +14,7 @@ export function loginManual(loginInfo) {
     return MembersService.loginManual(loginCredential).then(
       res => {
         if (res.success) {
-          dispatch(loadMemberDetailSuccess(res));
+          dispatch(loadLoginMemberDetailSuccess(res));
         }
         dispatch(hideLoading());
         return res;
@@ -40,7 +36,7 @@ export function loginManualMock(loginInfo) {
     return MembersService.loginManualMock(loginCredential).then(
       res => {
         if (res.success) {
-          dispatch(loadMemberDetailSuccess(res));
+          dispatch(loadLoginMemberDetailSuccess(res));
         }
         dispatch(hideLoading());
         return res;
@@ -67,7 +63,7 @@ export function setMemberDetail(memberDetail, useCookie = true) {
             JSON.stringify(memberDetail)
           );
         }
-        dispatch(loadMemberDetailSuccess(memberDetail));
+        dispatch(loadLoginMemberDetailSuccess(memberDetail));
         resolve(memberDetail);
       } catch (error) {
         reject(error);
@@ -88,7 +84,7 @@ export function getMemberDetail() {
         }
         if (!common.isEmpty(savedDetail)) {
           const memberDetail = JSON.parse(savedDetail);
-          dispatch(loadMemberDetailSuccess(memberDetail));
+          dispatch(loadLoginMemberDetailSuccess(memberDetail));
           resolve(memberDetail);
         } else {
           reject(new Error("No Saved detail"));
@@ -106,7 +102,7 @@ export function removeMemberDetail() {
       try {
         cookie.deleteCookie(globalKeys.ACCESS_MEMBER_DETAIL);
         sessionStorage.setItem(globalKeys.ACCESS_MEMBER_DETAIL, null);
-        dispatch(loadMemberDetailSuccess(null));
+        dispatch(loadLoginMemberDetailSuccess(null));
         resolve(true);
       } catch (error) {
         reject(error);

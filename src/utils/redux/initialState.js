@@ -1,13 +1,13 @@
 export default {
-  app: {
+  appReducer: {
     locale: "vi",
     loading: false
   },
-  loginUser: {
+  loginReducer: {
     userName: "",
     password: "",
     rememberMe: "",
     necessaryDataIsProvidedToSubmitLogin: false,
     isLoggedIn: false
-  },
+  }
 };

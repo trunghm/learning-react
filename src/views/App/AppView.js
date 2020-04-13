@@ -1,5 +1,5 @@
 import { Route, Switch } from "react-router-dom";
-import React, { lazy } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { I18nextProvider } from "react-i18next";
@@ -15,9 +15,9 @@ import { LAYOUT } from "../../constants/common";
 import LoginPage from "../Login";
 import DashboardPage from "../Dashboard";
 
-// const AboutView = lazy(() => import("../About/AboutView"));
 import HomeView from "../Home/HomeView";
-// const NotFoundView = lazy(() => import("../NotFound/NotFoundView"));
+import AboutView from "../About";
+import NotFoundView from "../NotFound";
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -86,14 +86,14 @@ class App extends React.PureComponent {
             {!isLoggedIn && <Header />}
             <Switch>
               <Route exact path="/" component={HomeView} />
-              {/* <Route path={pathKeys.ABOUT} component={AboutView}/>
-              <Route path={pathKeys.LOGIN} component={LoginPage}/>
+              <Route path={pathKeys.ABOUT} component={AboutView} />
+              <Route path={pathKeys.LOGIN} component={LoginPage} />
               <ProtectedRoute
                 path={pathKeys.DASHBOARD}
                 component={DashboardPage}
                 isAuthenticated={isLoggedIn}
-              /> */}
-              {/* <Route component={NotFoundView}/> */}
+              />
+              <Route component={NotFoundView} />
             </Switch>
           </Layout>
         </div>
@@ -102,13 +102,11 @@ class App extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    locale: "vi",
-    loading: false,
-    loginState: {}
-  };
-};
+const mapStateToProps = state => ({
+  locale: state.appReducer.locale,
+  loading: state.appReducer.loading,
+  loginState: state.loginReducer
+});
 
 const mapDispatchToProps = {
   getMemberDetail,
