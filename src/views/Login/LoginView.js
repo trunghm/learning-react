@@ -21,6 +21,20 @@ const LoginView = ({
   const { from } = props.location.state || {
     from: { pathname: pathKeys.LOGIN }
   };
+
+  function validateInputs({ cEmail, cPassword }) {
+    if (!common.validateEmail(cEmail)) {
+      toastr.warning(toastrTypes.INVALID, t("login.validate_invalid_email"));
+      return false;
+    }
+    if (common.isEmpty(cPassword)) {
+      toastr.warning(toastrTypes.EMPTY, t("login.validate_missing_password"));
+      return false;
+    }
+
+    return true;
+  }
+
   function onPressLogin(loginInfo) {
     if (validateInputs(loginInfo)) {
       loginManual(loginInfo).then(
@@ -44,19 +58,6 @@ const LoginView = ({
         }
       );
     }
-  }
-
-  function validateInputs({ email, password }) {
-    if (!common.validateEmail(email)) {
-      toastr.warning(toastrTypes.INVALID, t("login.validate_invalid_email"));
-      return false;
-    }
-    if (common.isEmpty(password)) {
-      toastr.warning(toastrTypes.EMPTY, t("login.validate_missing_password"));
-      return false;
-    }
-
-    return true;
   }
 
   function handleFieldChange(event) {
@@ -91,17 +92,6 @@ LoginView.propTypes = {
   setMemberDetail: func.isRequired,
   getMemberDetail: func.isRequired,
   loginUser: object.isRequired
-};
-
-LoginView.defaultProps = {
-  loginUser: {
-    userName: "",
-    password: ""
-  },
-  loginManualMock: () => {},
-  loginManual: () => {},
-  setMemberDetail: () => {},
-  getMemberDetail: () => {}
 };
 
 export default LoginView;

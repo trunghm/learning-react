@@ -1,8 +1,6 @@
 export default class BaseService {
-
-  handleError(error) {
+  static handleError(error) {
     console.log("SERVICE ERROR", error);
-    throw (error.message || error);
+    throw error.message || error;
   }
 }
-

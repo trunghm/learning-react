@@ -1,6 +1,6 @@
-import { pathKeys } from "../../../constants";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import React  from "react";
+import { pathKeys } from "../../../constants";
 
 const ProtectedRoute = ({ component: Component, isAuthenticated, ...rest }) => {
   return (

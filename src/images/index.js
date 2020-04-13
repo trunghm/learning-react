@@ -1,3 +1,5 @@
+const icLoadingGrey = require("./loadingGrey.gif");
+
 export default {
-  icLoadingGrey: require("./loadingGrey.gif")
+  icLoadingGrey
 };

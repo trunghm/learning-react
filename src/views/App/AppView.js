@@ -45,7 +45,6 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      checked: false,
       isLoggedIn: false
     };
 
@@ -55,7 +54,7 @@ class App extends React.PureComponent {
   }
 
   setRender(isLoggedIn = false) {
-    this.setState({ isLoggedIn, checked: true });
+    this.setState({ isLoggedIn });
   }
 
   checkLogin() {
@@ -75,14 +74,14 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const { isLoggedIn } = this.props.loginState;
+    const { isLoggedIn } = this.state;
     const layout = isLoggedIn ? LAYOUT.DRAWERLEFT : LAYOUT.FULLPAGE;
-    const { logout } = this.props;
+    const { onLogout } = this.props;
     return (
       <I18nextProvider i18n={i18next}>
         <div>
           <Loading loading={this.props.loading} />
-          <Layout layout={layout} props={{ logout }}>
+          <Layout layout={layout} props={{ logout: onLogout }}>
             {!isLoggedIn && <Header />}
             <Switch>
               <Route exact path="/" component={HomeView} />
@@ -110,13 +109,14 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getMemberDetail,
-  logout
+  onLogout: logout
 };
 
 App.propTypes = {
   locale: PropTypes.string,
   loading: PropTypes.bool,
-  getMemberDetail: PropTypes.func
+  getMemberDetail: PropTypes.func,
+  onLogout: PropTypes.func
 };
 
 App.defaultProps = {

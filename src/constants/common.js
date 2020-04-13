@@ -14,14 +14,17 @@ export const LAYOUT = {
   FULLPAGE: "FULLPAGE"
 };
 
-export const MenuLeft = [{
-  name:"Home",
-pathName:pathKeys.ROOT
-},{
-  name: "Dashboard",
-  pathName:pathKeys.DASHBOARD
-},
+export const MenuLeft = [
+  {
+    name: "Home",
+    pathName: pathKeys.ROOT
+  },
+  {
+    name: "Dashboard",
+    pathName: pathKeys.DASHBOARD
+  },
   {
     name: "About",
-    pathName:pathKeys.ABOUT
-  }];
+    pathName: pathKeys.ABOUT
+  }
+];

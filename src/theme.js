@@ -61,8 +61,8 @@ const theme = createMuiTheme({
     }
   },
   border: {
-    borderColor: borderColor,
-    borderWidth: borderWidth
+    borderColor,
+    borderWidth
   },
   overrides: {
     MuiExpansionPanel: {
@@ -89,7 +89,7 @@ const theme = createMuiTheme({
     },
     MuiPrivateNotchedOutline: {
       root: {
-        borderWidth: borderWidth
+        borderWidth
       }
     },
     MuiListItem: {

@@ -8,7 +8,7 @@ export default class BaseApi {
     this.Methods = httpMethods;
   }
 
-  execute(
+  static execute(
     method,
     endpoint,
     headers = undefined,

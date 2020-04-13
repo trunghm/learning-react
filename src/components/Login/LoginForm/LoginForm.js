@@ -1,10 +1,9 @@
 import React from "react";
-import { loginUserType } from "../../../types";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
-import "./LoginForm.scss";
 import { Button, TextField } from "@material-ui/core";
-
+import { loginUserType } from "../../../types";
+import "./LoginForm.scss";
 
 const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
   const onSubmit = () => {
@@ -16,7 +15,7 @@ const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
   const { t } = useTranslation();
 
   return (
-    <div className='loginModule'>
+    <div className="loginModule">
       <form>
         <h2>Login Form</h2>
         <TextField
@@ -47,12 +46,11 @@ const LoginForm = ({ loginInfo, handleLogin, handleFieldChange }) => {
           placeholder={t("login.password_placeholder_text")}
           value={loginInfo.password}
         />
-        <hr/>
+        <hr />
         <div className="btnLogin">
           <Button onClick={onSubmit}>Login</Button>
         </div>
       </form>
-
     </div>
   );
 };

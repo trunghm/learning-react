@@ -15,7 +15,7 @@ production.serverSchema = "https";
 production.serverHost = "chatapi.redhotpie.com.au";
 
 //
-const buildApp = (build) => {
+const buildApp = build => {
   switch (build.buildMode) {
     case dev.buildMode:
       return dev;
@@ -31,7 +31,8 @@ const buildApp = (build) => {
 const getBuildType = () => {
   if (process.env.NODE_ENV === "staging") {
     return staging;
-  } else if (process.env.NODE_ENV === "production") {
+  }
+  if (process.env.NODE_ENV === "production") {
     return production;
   }
   return dev;
@@ -44,9 +45,9 @@ export default {
     dev,
     staging,
     production,
-    isProduction: (currentBuild.buildMode === production.buildMode),
-    isStaging: (currentBuild.buildMode === staging.buildMode),
-    isDevelop: (currentBuild.buildMode === dev.buildMode)
+    isProduction: currentBuild.buildMode === production.buildMode,
+    isStaging: currentBuild.buildMode === staging.buildMode,
+    isDevelop: currentBuild.buildMode === dev.buildMode
   },
   build: buildApp(currentBuild)
 };
